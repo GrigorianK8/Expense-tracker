@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
+/**
+ * This is controller class for Expense module
+ * @author grigoriank
+ * */
 @RestController
 @RequiredArgsConstructor
 @Slf4j
@@ -20,6 +23,10 @@ public class ExpenseEndpoint {
     private final ExpenseService expenseService;
     private final ModelMapper modelMapper;
 
+    /**
+     * It will fetch the expenses from database
+     * @return list
+     * */
     @GetMapping("/expenses")
     public List<ExpenseResponse> getExpenses() {
         log.info("API GET / expenses called");
@@ -32,6 +39,11 @@ public class ExpenseEndpoint {
         return response;
     }
 
+    /**
+     * Mapper method for converting expense dto object to expense response
+     * @param expenseDto
+     * @return ExpenseResponse
+     * */
     private ExpenseResponse mapToExpenseResponse(ExpenseDTO expenseDTO) {
         return modelMapper.map(expenseDTO, ExpenseResponse.class);
     }
